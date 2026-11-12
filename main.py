@@ -1,12 +1,7 @@
-from user import User
-from post import Post
+import requests
 
-app_user_one = User("rb@er.com", "RoBö", "pwd", "master of desaster")
+response = requests.get("https://gitlab.com/api/v4/users/techworld-with-nana/projects")
+my_projects = response.json()
 
-app_user_one.get_user_info()
-
-app_user_two = User("tr@er.com", "Fiona", "pwd", "bachelor of desaster")
-app_user_two.get_user_info()
-
-new_post = Post("on a mission today", app_user_two.name)
-new_post.get_post_info()
+for project in my_projects:
+    print(f"project-name: {project['name']}\n project-url: {project['web_url']}\n")
